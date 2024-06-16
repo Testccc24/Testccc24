@@ -17,5 +17,5 @@ steps:
   displayName: 'Deploy to Azure Web App'
   inputs:
     azureSubscription: '67494e9f-ee8c-4893-930c-6ceed3627e14'  
-    appName: 'my-python-app' 
+    appName: 'mypythonapp24' 
     containers: 'docker.pkg.github.com/testccc24/testccc24/my-python-app'   
