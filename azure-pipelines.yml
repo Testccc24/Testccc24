@@ -11,7 +11,7 @@ steps:
     containerRegistry: 'docker'   
     repository: 'Testccc24/my-python-app' 
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'Dockerfile'
 
 - task: AzureWebAppContainer@1
   displayName: 'Deploy to Azure Web App'
