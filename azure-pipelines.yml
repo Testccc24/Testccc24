@@ -4,18 +4,24 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: Docker@2
+jobs:
+- job: BuildAndPush
   displayName: 'Build and push Docker image'
-  inputs:
-    containerRegistry: 'docker'   
-    repository: 'testccc24/testccc24:latest' 
-    command: 'buildAndPush'
-    Dockerfile: 'Dockerfile'
+  steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'docker'   
+      repository: 'testccc24/testccc24:latest' 
+      command: 'buildAndPush'
+      Dockerfile: 'Dockerfile'
 
-- task: AzureWebAppContainer@1
+- job: DeployToAzure
   displayName: 'Deploy to Azure Web App'
-  inputs:
-    azureSubscription: 'servtest'  
-    appName: 'mypythonapp24' 
-    containers: 'docker.pkg.github.com/testccc24/testccc24/my-python-app'   
+  dependsOn: BuildAndPush
+  steps:
+  - task: AzureWebAppContainer@1
+    inputs:
+      azureSubscription: 'servtest'  
+      appName: 'mypythonapp24' 
+      containers: 'docker.pkg.github.com/testccc24/testccc24/my-python-app'
+
