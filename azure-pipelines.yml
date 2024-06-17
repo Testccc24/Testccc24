@@ -9,7 +9,7 @@ steps:
   displayName: 'Build and push Docker image'
   inputs:
     containerRegistry: 'docker'   
-    repository: 'Testccc24/my-python-app' 
+    repository: 'testccc24/testccc24' 
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
 
