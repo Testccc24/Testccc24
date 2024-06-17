@@ -8,16 +8,19 @@ steps:
 - task: Docker@2
   displayName: 'Build and push Docker image'
   inputs:
-    containerRegistry: 'docker'   
-    repository: 'testccc24/testccc24:latest' 
+    containerRegistry: 'docker'
+    repository: 'testccc24/testccc24:latest'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
+ 
+  concurrency: 1
 
 - task: AzureWebAppContainer@1
   displayName: 'Deploy to Azure Web App'
   inputs:
-    azureSubscription: 'servtest'  
-    appName: 'mypythonapp24' 
+    azureSubscription: 'servtest'
+    appName: 'mypythonapp24'
     containers: 'docker.pkg.github.com/testccc24/testccc24/my-python-app'
 
+  concurrency: 1
 
