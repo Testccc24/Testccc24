@@ -16,6 +16,6 @@ steps:
 - task: AzureWebAppContainer@1
   displayName: 'Deploy to Azure Web App'
   inputs:
-    azureSubscription: 'Testccc2024'  
+    azureSubscription: 'docker'  
     appName: 'mypythonapp24' 
     containers: 'docker.pkg.github.com/testccc24/testccc24/my-python-app'   
