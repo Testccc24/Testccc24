@@ -1,14 +1,21 @@
-- task: Docker@2
-  displayName: 'Build and push Docker image'
-  inputs:
-    containerRegistry: 'docker'
-    repository: 'testccc24/testccc24'
-    command: 'buildAndPush'
-    Dockerfile: 'Dockerfile'
+pipeline:
+  stages:
+    - build
+    - deploy
 
-- task: AzureWebAppContainer@1
-  displayName: 'Deploy to Azure Web App'
-  inputs:
-    azureSubscription: 'servtest'
-    appName: 'mypythonapp24'
-    containers: 'testccc24/testccc24:latest'
+build:
+  tasks:
+    - task: Docker@2
+      displayName: 'Build and push Docker image'
+      inputs:
+        containerRegistry: 'docker'
+        repository: 'testccc24/testccc24'
+        command: 'buildAndPush'
+        Dockerfile: 'Dockerfile'
+
+    - task: AzureWebAppContainer@1
+      displayName: 'Deploy to Azure Web App'
+      inputs:
+        azureSubscription: 'servtest'
+        appName: 'mypythonapp24'
+        containers: 'testccc24/testccc24:latest'
