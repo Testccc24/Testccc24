@@ -1,13 +1,8 @@
-trigger:
-- main
-
-
-
 - task: Docker@2
   displayName: 'Build and push Docker image'
   inputs:
     containerRegistry: 'docker'
-    repository: 'testccc24/testccc24:latest'
+    repository: 'testccc24/testccc24'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
 
@@ -16,5 +11,4 @@ trigger:
   inputs:
     azureSubscription: 'servtest'
     appName: 'mypythonapp24'
-    containers: 'docker.pkg.github.com/testccc24/testccc24/my-python-app'
-
+    containers: 'testccc24/testccc24:latest'
