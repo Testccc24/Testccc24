@@ -1,12 +1,7 @@
 trigger:
 - main
 
-pool:
-  name: 'test24'
 
-steps:
-- checkout: self
-  fetchDepth: 1
 
 - task: Docker@2
   displayName: 'Build and push Docker image'
